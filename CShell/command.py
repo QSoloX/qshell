@@ -4,6 +4,7 @@
 
 class Command:
     '''The command object'''
+
     def __init__(self, name, help_message, usage, func):
         self.name = name
         self.help_message = help_message
