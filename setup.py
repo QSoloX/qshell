@@ -4,8 +4,8 @@
 from setuptools import find_packages, setup
 
 setup(
-    name='CShell',
-    packages=find_packages(include=['CShell']),
+    name='qshell',
+    packages=find_packages(include=['qshell']),
     version='0.1.0',
     description='A interactive command shell wrapper from python projects',
     author='QSoloX',
