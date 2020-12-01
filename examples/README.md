@@ -6,15 +6,15 @@ Various examples to show how to use qshell
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
 
-``bash
+```bash
 pip install qshell
-``
+```
 
 ## Usage
 
-``bash
+```bash
 python3 example.py
-``
+```
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
