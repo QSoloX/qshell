@@ -15,6 +15,7 @@ pip install qshell
 ## Docs
 
 The docs will be available soon :)
+for now just check out the examples folder to see how its used!
 
 ## Example
 
@@ -27,7 +28,7 @@ commands = {}
 
 @register('echo', 'Echo a word back to the console', 'Usage: echo sometext', commands)
 def command_echo(shell, user_in):
-    print(" ".join(user_in[1:]))
+    return " ".join(user_in[1:])
 
 def main():
     example = Shell(commands)
@@ -40,7 +41,7 @@ def main():
 
 ## ToDo
 
-- Add Customizable Colors
+- Add environment variables
 - Create Documentation
 - Better error handling
 
