@@ -1,3 +1,5 @@
+![Upload Python Package](https://github.com/QSoloX/qshell/workflows/Upload%20Python%20Package/badge.svg)
+
 # QShell (Quick Shell)
 
 A simple python command shell, that allows you to wrap your program in a interactive shell environment.
