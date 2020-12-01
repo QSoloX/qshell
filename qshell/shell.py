@@ -30,21 +30,18 @@ class Shell():
             "blue": Fore.BLUE,
             "cyan": Fore.CYAN,
             "black": Fore.BLACK,
-            "green": Fore.GREEN
+            "green": Fore.GREEN,
         }
-        self.output_color = self.colors["red"]
-        self.shell_color = self.colors["blue"]
-        self.shell_var_color = self.colors["red"]
-        self.shell_input_color = self.colors['green']
 
         # This init is for colorama
         init()
+        self.set_colors()
 
     def set_colors(self,
                    shell="blue",
                    shell_var="red",
                    output="red",
-                   input_color="cyan"):
+                   input_color="green"):
         '''Allows to set all the colors, if not specified will use default'''
         self.shell_color = self.colors[shell]
         self.shell_var_color = self.colors[shell_var]
@@ -68,7 +65,7 @@ class Shell():
 
     def run(self):
         '''The main shell loop'''
-        
+
         if self.clear_on_start:
             self.clear()
 
@@ -76,10 +73,12 @@ class Shell():
             try:
                 if self.shell_variable != "":
                     print(
-                        f"{self.shell_color}{self.name} {self.shell_var_color}{self.shell_variable} {self.shell_color}> ",
+                        f"{self.shell_color}{self.name} {self.shell_var_color}{self.shell_variable} {self.shell_color}>{self.shell_input_color}",
                         end=" ")
                 else:
-                    print(f"{self.shell_color}{self.name} >", end=" ")
+                    print(
+                        f"{self.shell_color}{self.name} >{self.shell_input_color}",
+                        end=" ")
 
                 user_input = input().split(" ")
 
