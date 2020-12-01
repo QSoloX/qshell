@@ -3,18 +3,57 @@
 
 import os
 import platform
+from colorama import init, Fore
 
 
 class Shell():
     '''A basic command line shell implemented in python'''
-
-    def __init__(self, command_dict, name="Shell", ext_object=None):
+    def __init__(self,
+                 command_dict,
+                 name="Shell",
+                 ext_object=None,
+                 clear_on_start=False):
         self.history = []
         self.command_dict = command_dict
         self.object = ext_object
         self.name = name
         self.running = True
         self.user_os = platform.system().lower()
+        self.clear_on_start = clear_on_start
+
+        # Shell Variables
+        self.shell_variable = ""
+
+        # Shell Colors
+        self.colors = {
+            "red": Fore.RED,
+            "blue": Fore.BLUE,
+            "cyan": Fore.CYAN,
+            "black": Fore.BLACK,
+            "green": Fore.GREEN
+        }
+        self.output_color = self.colors["red"]
+        self.shell_color = self.colors["blue"]
+        self.shell_var_color = self.colors["red"]
+        self.shell_input_color = self.colors['green']
+
+        # This init is for colorama
+        init()
+
+    def set_colors(self,
+                   shell="blue",
+                   shell_var="red",
+                   output="red",
+                   input_color="cyan"):
+        '''Allows to set all the colors, if not specified will use default'''
+        self.shell_color = self.colors[shell]
+        self.shell_var_color = self.colors[shell_var]
+        self.output_color = self.colors[output]
+        self.shell_input_color = self.colors[input_color]
+
+    def update_var(self, new_var):
+        '''Updates the shell variable'''
+        self.shell_variable = new_var
 
     def update_history(self, new_item):
         '''Used to update the command history'''
@@ -29,14 +68,25 @@ class Shell():
 
     def run(self):
         '''The main shell loop'''
+        
+        if self.clear_on_start:
+            self.clear()
+
         while self.running:
             try:
-                print(f"{self.name} > ", end=" ")
+                if self.shell_variable != "":
+                    print(
+                        f"{self.shell_color}{self.name} {self.shell_var_color}{self.shell_variable} {self.shell_color}> ",
+                        end=" ")
+                else:
+                    print(f"{self.shell_color}{self.name} >", end=" ")
 
                 user_input = input().split(" ")
 
                 if user_input[0] in self.command_dict:
-                    self.command_dict[user_input[0]].func(self, user_input)
+                    print(
+                        f"{self.output_color}{self.command_dict[user_input[0]].func(self, user_input)}"
+                    )
                     self.update_history(user_input)
 
             except KeyboardInterrupt:
