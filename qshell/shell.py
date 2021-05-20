@@ -11,7 +11,7 @@ class Shell:
     """A basic command line shell implemented in python"""
 
     def __init__(
-        self, command_dict, name="Shell", ext_object=None, clear_on_start=False
+        self, command_dict, name="Shell", ext_object=None, clear_on_start=False, banner=None
     ):
         self.history = []
         self.command_dict = command_dict
@@ -23,6 +23,9 @@ class Shell:
 
         # Shell Variables
         self.shell_variable = ""
+
+        # Banner
+        self.shell_banner = banner
 
         # Shell Colors
         self.colors = {
@@ -66,7 +69,8 @@ class Shell:
 
         if self.clear_on_start:
             self.clear()
-
+        if self.shell_banner:
+            print(f"{self.shell_banner}")
         while self.running:
             try:
                 if self.shell_variable != "":
@@ -88,7 +92,8 @@ class Shell:
                         self, user_input)
                     if type(output) == list:
                         for i in output:
-                            print(f"{self.output_color}{''.join(i)}")
+                            print(
+                                f"{self.output_color}{' '.join(i) if type(i) == list else ''.join(i)}")
                     elif type(output) == dict:
                         for key, value in output:
                             print(f"{self.output_color}{key}:{value}")
