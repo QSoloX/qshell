@@ -95,8 +95,8 @@ class Shell:
                             print(
                                 f"{self.output_color}{' '.join(i) if type(i) == list else ''.join(i)}")
                     elif type(output) == dict:
-                        for key, value in output:
-                            print(f"{self.output_color}{key}:{value}")
+                        for key, value in output.items():
+                            print(f"{self.output_color}{key}: {value}")
                     elif output == None:
                         continue
                     else:
