@@ -11,7 +11,7 @@ class Shell:
     """A basic command line shell implemented in python"""
 
     def __init__(
-        self, command_dict, name="Shell", ext_object=None, clear_on_start=False, banner=None
+        self, command_dict, name="Shell", ext_object=None, clear_on_start=False, banner=None, settings=None
     ):
         self.history = []
         self.command_dict = command_dict
@@ -39,6 +39,7 @@ class Shell:
         # This init is for colorama
         init()
         self.set_colors()
+        self.settings = settings
 
     def set_colors(
         self, shell="blue", shell_var="red", output="red", input_color="green"
