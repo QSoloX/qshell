@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+commands = {}
+
 
 class Command:
     '''The command object'''
@@ -12,7 +14,7 @@ class Command:
         self.func = func
 
 
-def register(name, help_message, usage, commands):
+def register(name, help_message, usage):
     '''Used to register different commands'''
     def inner(func):
         command = Command(name, help_message, usage, func)
