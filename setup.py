@@ -6,7 +6,7 @@ from setuptools import find_packages, setup
 setup(
     name='qshell',
     packages=find_packages(include=['qshell']),
-    version='0.2.5',
+    version='0.2.6',
     description='A interactive command shell wrapper from python projects',
     author='QSoloX',
     license='MIT',

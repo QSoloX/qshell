@@ -3,3 +3,4 @@
 
 from .shell import Shell
 from .command import register
+from .command import commands
